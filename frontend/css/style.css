@@ -38,3 +38,56 @@
 .home-login:hover{
 transform: translateY(-4px);
 }
+.login-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin:0;
+    background: radial-gradient(
+    circle, 
+    rgba(131, 54, 54, 0.8) 0%,   /* Bright in the center */
+    rgba(131, 54, 54, 0.5) 50%,  /* Medium fade */
+    rgba(131, 54, 54, 0.2) 100%  /* Almost transparent at edges */
+  );
+}
+.login-form{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(243, 163, 163);
+    width:450px;
+    height:400px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: rgb(131, 54, 49,0.7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+    border-radius: 20px;
+    
+}
+.login-form h1{
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+.login-form label{
+    font-size: 20px;
+}
+.login-form input{
+    width:250px;
+    height:30px;
+    border-radius: 12px;
+}
+.login-form input[name='submit']{
+    width:200px;
+    height:42px;
+    border-radius: 20px;
+    margin:10px;
+    border: 2px double rgb(163, 102, 102);
+    background-color: brown;
+    color: beige;
+    font-weight: 700;
+}
+.login-form a{
+    color:white;
+}
