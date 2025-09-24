@@ -1,0 +1,40 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.home-body{
+    background: radial-gradient(
+    circle, 
+    rgba(131, 54, 54, 0.8) 0%,   /* Bright in the center */
+    rgba(131, 54, 54, 0.5) 50%,  /* Medium fade */
+    rgba(131, 54, 54, 0.2) 100%  /* Almost transparent at edges */
+  );
+    text-align: center;
+    margin:200px;
+    padding:22px;
+    color: rgb(218, 218, 214);
+}
+.welcome-banner{
+    font-size: 72px;
+}
+.welcome-banner2{
+    font-size: 42px;
+}
+.loginP{
+    font-size: 24px;
+}
+.home-login{
+    width:200px;
+    height:42px;
+    border-radius: 20px;
+    transition: transform 0.2s ease;
+    margin:10px;
+    border: 2px double rgb(163, 102, 102);
+    background-color: brown;
+    color: beige;
+    font-weight: 700;
+}
+.home-login:hover{
+transform: translateY(-4px);
+}
