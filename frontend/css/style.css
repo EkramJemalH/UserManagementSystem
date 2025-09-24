@@ -145,3 +145,109 @@ transform: translateY(-4px);
 .register-form a{
     color:white;
 }
+.profile-page{
+    background: radial-gradient(
+    circle, 
+    rgba(131, 54, 54, 0.8) 0%,   /* Bright in the center */
+    rgba(131, 54, 54, 0.5) 50%,  /* Medium fade */
+    rgba(131, 54, 54, 0.2) 100%  /* Almost transparent at edges */
+  );
+}
+.userDashboard {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+.userDashboard header {
+    display: flex;
+    justify-content: space-between; /* pushes items to edges */
+    align-items: center; /* vertically centers items */
+    padding: 10px 20px;
+}
+.userDashboard header h2{
+    font-size: 36px;
+}
+.logout{
+    width:100px;
+    height:42px;
+    border-radius: 20px;
+    margin:10px;
+    border: 2px double rgb(163, 102, 102);
+    background-color: rgb(233, 34, 34);
+    color: beige;
+    font-weight: 700;
+
+}
+.changeprofile{
+     width:200px;
+    height:38px;
+    margin:10px;
+    border: 2px double rgb(163, 102, 102);
+    background-color: rgb(145, 17, 17);
+    color: beige;
+    font-weight: 700;
+}
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.profile-pic img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #d88b8b;
+}
+.edit{
+    width:200px;
+    height:42px;
+    margin:10px;
+    border: 2px double rgb(163, 102, 102);
+    background-color: brown;
+    color: beige;
+    font-weight: 700;
+}
+.edit-profile {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+    .userDashboard {
+        padding: 10px;
+    }
+
+    .userDashboard header {
+        flex-direction: column;       /* stack header items */
+        text-align: center;           /* center text */
+        gap: 10px;                    /* space between header items */
+    }
+
+    .profile-info {
+        flex-direction: column;       /* stack picture and details */
+        align-items: center;          /* center items horizontally */
+        text-align: center;           /* center text in details */
+        gap: 15px;                    /* space between picture and info */
+        font-size: 18px;              /* slightly smaller font */
+    }
+
+    .profile-pic img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .edit-profile {
+        width: 90%;                   /* make edit form responsive */
+        margin: auto;
+    }
+
+     .changeprofile, .edit {
+        width: 80%;                    /* buttons full width */
+        margin: 10px auto;             /* center buttons */
+    }
+}
