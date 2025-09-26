@@ -1,10 +1,8 @@
 // LOGIN BUTTON (only if it exists)
-const loginBtn = document.getElementById('loginBtn');
-if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
+const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', () => {
         window.location.href = 'login.html';
     });
-}
 
 // REGISTRATION FORM VALIDATION (only if it exists)
 const registerForm = document.getElementById("register-form");
