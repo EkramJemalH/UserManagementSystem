@@ -100,3 +100,5 @@ editForm.addEventListener('submit', function (e) {
 
   alert("Profile updated successfully!");
 });
+
+
