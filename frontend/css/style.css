@@ -216,6 +216,23 @@ transform: translateY(-4px);
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+.editProfileForm{
+    display:flex;
+    flex-direction: column;
+}
+.editProfileForm input{
+    width: 50%;
+    height:30px;
+}
+.editProfileForm button{
+     width:200px;
+    height:38px;
+    margin:10px;
+    border: 2px double rgb(163, 102, 102);
+    background-color: rgb(145, 17, 17);
+    color: beige;
+    font-weight: 700;
+}
 /* Tablet and smaller screens */
 @media (max-width: 768px) {
     .userDashboard {
