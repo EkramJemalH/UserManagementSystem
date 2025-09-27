@@ -69,10 +69,17 @@ $userRole = $_SESSION['role'];
 
 <script>
   // Logout
-  const logoutBtn = document.getElementById('logoutBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+
   logoutBtn.addEventListener('click', () => {
-      window.location.href = '../frontend/login.html';
+    // Redirect to PHP logout script
+    window.location.href = '/backend/api/logout.php'; // adjust path if needed
   });
+
+
+
+
+
 
   // Toggle Edit Profile Section
   const editBtn = document.getElementById('editProfileBtn');

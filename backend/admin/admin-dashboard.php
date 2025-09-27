@@ -195,7 +195,14 @@ $usersFromDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
     renderUsers(users);
 
     const logoutBtn = document.getElementById('logoutBtn');
-    logoutBtn.addEventListener('click', () => { window.location.href = '../frontend/login.html'; });
+
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    // Redirect to PHP logout script
+    window.location.href = '../backend/logout.php'; // adjust path if needed
+  });
+}
+
   });
   </script>
 
