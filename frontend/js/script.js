@@ -4,59 +4,33 @@ loginBtn.addEventListener('click',()=>{
   window.location.href="login.html";
 });
 
-const logoutBtn = document.getElementById('logoutBtn');
-    logoutBtn.addEventListener('click', () => {
-        window.location.href = 'login.html';
-    });
+document.getElementById("register-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const password = form.password.value;
+    const confirmPassword = form.confirm_password.value;
 
-// REGISTRATION FORM VALIDATION (only if it exists)
-const registerForm = document.getElementById("register-form");
-if (registerForm) {
-    registerForm.addEventListener('submit', function(e){
-        e.preventDefault();
+    const role = document.querySelector('input[name="role"]:checked')?.value;
+    if (!role) return document.getElementById("errorMsg").textContent = "Please select a role.";
+    if (password !== confirmPassword) return document.getElementById("errorMsg").textContent = "Passwords do not match!";
 
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm_password') ? document.getElementById('confirm_password').value : '';
-        const role=document.getElementById("role").value;
-        const errorMsg = document.getElementById("errorMsg");
+    const formData = new FormData(form);
 
-        if (errorMsg) errorMsg.textContent = "";
+    try {
+        const response = await fetch("../../backend/api/register.php", {
+            method: "POST",
+            body: formData
+        });
 
-        // EMAIL VALIDATION
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            if (errorMsg) errorMsg.textContent = "Please enter a valid email address.";
-            return;
+        const data = await response.json();
+
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            document.getElementById("errorMsg").textContent = data.error || "Registration failed.";
         }
-
-        // PASSWORD LENGTH CHECK
-        if (password.length < 6) {
-            if (errorMsg) errorMsg.textContent = "Password must be at least 6 characters long";
-            return;
-        }
-
-        // CONFIRM PASSWORD MATCH
-        if (confirmPassword && password !== confirmPassword) {
-            if (errorMsg) errorMsg.textContent = "Passwords don't match.";
-            return;
-        }
-
-        if(role=="admin"){
-            window.location.href="admin-dashboard.html";
-
-        }
-        else{
-            window.location.href="profile.html";
-        }
-        // All validations passed → submit
-        this.submit();
-    });
-}
-
-
-
-  
-
-
+    } catch (err) {
+        console.error(err);
+        document.getElementById("errorMsg").textContent = "Server error. Try again later.";
+    }
+});

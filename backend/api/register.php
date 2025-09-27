@@ -1,43 +1,58 @@
 <?php
-// Include database connection
-require_once "../db.php";
+session_start();
+require_once "../db.php"; // Adjust path based on your folder structure
 
-// Check if form data is sent
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    $role = trim($_POST['role']); // 'admin' or 'user'
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $confirmPassword = $_POST['confirm_password'] ?? '';
+    $role = $_POST['role'] ?? '';
 
-    // Simple validation
-    if (empty($username) || empty($email) || empty($password) || empty($role)) {
-        echo json_encode(["status" => "error", "message" => "All fields are required"]);
-        exit;
+    // Basic validation
+    if (empty($name) || empty($email) || empty($password) || empty($role)) {
+        die("Please fill in all required fields.");
     }
 
-    // Hash the password
+    if ($password !== $confirmPassword) {
+        die("Passwords do not match.");
+    }
+
+    // Check if email already exists
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    if ($stmt->rowCount() > 0) {
+        die("Email already registered.");
+    }
+
+    // Hash password
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    try {
-        // Check if email already exists
-        $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        if ($stmt->rowCount() > 0) {
-            echo json_encode(["status" => "error", "message" => "Email already registered"]);
-            exit;
-        }
+    // Insert user into DB
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, :role)");
+    $stmt->execute([
+        'name' => $name,
+        'email' => $email,
+        'password' => $passwordHash,
+        'role' => $role
+    ]);
 
-        // Insert new user
-        $stmt = $pdo->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$username, $email, $passwordHash, $role]);
+    // Save session info
+    $_SESSION['role'] = $role;
+    $_SESSION['user_name'] = $name;
+    $_SESSION['user_email'] = $email; // add email for profile page
 
-        echo json_encode(["status" => "success", "message" => "User registered successfully"]);
-
-    } catch (Exception $e) {
-        echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+    // Redirect based on role
+    if ($role === 'admin') {
+        header("Location: ../admin/admin-dashboard.php"); // Use .php instead of .html if you convert dashboards to PHP
+        exit();
+    } else {
+        header("Location: ../user/profile.php"); // Use .php instead of .html
+        exit();
     }
-
 } else {
-    echo json_encode(["status" => "error", "message" => "Invalid request method"]);
+    // If accessed directly via GET
+    header("Location: ../../frontend/register.html");
+    exit();
 }
 ?>

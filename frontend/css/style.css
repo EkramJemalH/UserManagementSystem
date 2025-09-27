@@ -145,6 +145,23 @@ transform: translateY(-4px);
 .register-form a{
     color:white;
 }
+.register-form input[type="radio"] {
+  accent-color: #ac1a1a; /* Modern blue accent */
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.register-form input[type="radio"]:checked + span {
+  font-weight: bold;
+}
+
+/* Optional: Highlight the chosen role */
+.register-form input[type="radio"]:checked + label {
+  border: 2px solid #9c1414;
+  background: #eaf2ff;
+}
+
 .profile-page{
     background: radial-gradient(
     circle, 

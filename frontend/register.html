@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="register-page">
-    <form class="register-form" id="register-form">
+    <form class="register-form" id="register-form" method="POST" action="../backend/api/register.php">
     <h1>Register</h1>
     <label>Full Name</label>
     <input type="text"  id="name" name="name" placeholder="Full Name" required>
@@ -21,10 +21,17 @@
     <label>Confirm Password</label>
     <input type="password"  id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
     <label for="role">Select Role</label>
-<select name="role" id="role" required>
-  <option value="user">User</option>
-  <option value="admin">Admin</option>
-</select>
+<div>
+  <label>
+    <input type="radio" name="role" value="admin" required>
+    Admin
+  </label>
+  <label>
+    <input type="radio" name="role" value="user" required>
+    User
+  </label>
+</div>
+
     <input type="submit" value="Register" name="submit">
     <p>Already have an account? <a href="login.html">Login here</a></p>
     <p id="errorMsg" style="color:rgb(212, 12, 12);font-size: 24px;"></p>
