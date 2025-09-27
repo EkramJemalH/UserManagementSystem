@@ -1,4 +1,8 @@
-// LOGIN BUTTON (only if it exists)
+const loginBtn=document.getElementById("loginBtn");
+
+loginBtn.addEventListener('click',()=>{
+  window.location.href="login.html";
+})
 const logoutBtn = document.getElementById('logoutBtn');
     logoutBtn.addEventListener('click', () => {
         window.location.href = 'login.html';
